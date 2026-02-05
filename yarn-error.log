@@ -1,0 +1,56 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\VincentSarsah\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add next@latest react@latest react-dom@latest eslint-config-next@latest
+
+PATH: 
+  C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\VincentSarsah\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Java\jdk-17\bin;C:\Program Files\Java\jdk-17\bin;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\dotnet\;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Go\bin;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Kubernetes\Minikube;C:\Users\VincentSarsah\anaconda3;C:\Users\VincentSarsah\anaconda3\Library\mingw-w64\bin;C:\Users\VincentSarsah\anaconda3\Library\usr\bin;C:\Users\VincentSarsah\anaconda3\Library\bin;C:\Users\VincentSarsah\anaconda3\Scripts;C:\Users\VincentSarsah\.cargo\bin;C:\Users\VincentSarsah\AppData\Local\Microsoft\WindowsApps;C:\Users\VincentSarsah\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VincentSarsah\AppData\Local\GitHubDesktop\bin;C:\Users\VincentSarsah\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Java\jdk-17\bin;C:\Users\VincentSarsah\AppData\Local\Programs\mongosh\;C:\Users\VincentSarsah\go\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2024.1.4\bin;;C:\Program Files\sqlite-tools-win-x64-3460000;C:\Users\VincentSarsah\Downloads\stripe_1.21.5_windows_x86_64;C:\Users\VincentSarsah\.bun\bin;C:\Program Files\PostgreSQL\16\bin;C:\Users\VincentSarsah\AppData\Local\Programs\Windsurf\bin;C:\Users\VincentSarsah\AppData\Roaming\npm;C:\Users\VincentSarsah\AppData\Local\Programs\cursor\resources\app\bin;C:\Program Files (x86)\BrowserStackLocal\;C:\Program Files\JetBrains\PyCharm 2025.2.4\bin;C:\Users\VincentSarsah\AppData\Local\Programs\Antigravity\bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  22.14.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\VincentSarsah\Desktop\CODE\iDEVICE\jerry_inventory\inventory\node_modules\.bin\next.exe'
+
+npm manifest: 
+  {
+    "name": "jerry_inventory",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+    },
+    "dependencies": {
+      "@ant-design/icons": "^6.1.0",
+      "antd": "^6.2.3",
+      "dayjs": "^1.11.19",
+      "firebase": "^12.8.0",
+      "framer-motion": "^12.31.0",
+      "next": "15.0.2",
+      "react": "19.0.0-rc-02c0e824-20241028",
+      "react-countup": "^6.5.3",
+      "react-dom": "19.0.0-rc-02c0e824-20241028",
+      "recharts": "^3.7.0"
+    },
+    "devDependencies": {
+      "@types/node": "^20",
+      "@types/react": "^18",
+      "@types/react-dom": "^18",
+      "eslint": "^8",
+      "eslint-config-next": "15.0.2",
+      "typescript": "^5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

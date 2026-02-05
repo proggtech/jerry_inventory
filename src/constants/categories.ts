@@ -1,0 +1,17 @@
+export const PRODUCT_CATEGORIES = [
+    { label: 'Laptops & Computers', value: 'Laptops & Computers' },
+    { label: 'TV & DVD Equipment', value: 'TV & DVD Equipment' },
+    { label: 'Video Game Consoles', value: 'Video Game Consoles' },
+    { label: 'Audio & Music Equipment', value: 'Audio & Music Equipment' },
+    { label: 'Headphones', value: 'Headphones' },
+    { label: 'Photo & Video Cameras', value: 'Photo & Video Cameras' },
+    { label: 'Security & Surveillance', value: 'Security & Surveillance' },
+    { label: 'Networking Products', value: 'Networking Products' },
+    { label: 'Printers & Scanners', value: 'Printers & Scanners' },
+    { label: 'Computer Monitors', value: 'Computer Monitors' },
+    { label: 'Computer Hardware', value: 'Computer Hardware' },
+    { label: 'Computer Accessories', value: 'Computer Accessories' },
+    { label: 'Accessories & Supplies for Electronics', value: 'Accessories & Supplies for Electronics' },
+    { label: 'Video Games', value: 'Video Games' },
+    { label: 'Software', value: 'Software' },
+];
