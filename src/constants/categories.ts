@@ -1,4 +1,8 @@
 export const PRODUCT_CATEGORIES = [
+    { label: 'Mobile Phones', value: 'Mobile Phones' },
+    { label: 'Accessories for Phones & Tablets', value: 'Accessories for Phones & Tablets' },
+    { label: 'Smart Watches', value: 'Smart Watches' },
+    { label: 'Tablets', value: 'Tablets' },
     { label: 'Laptops & Computers', value: 'Laptops & Computers' },
     { label: 'TV & DVD Equipment', value: 'TV & DVD Equipment' },
     { label: 'Video Game Consoles', value: 'Video Game Consoles' },
@@ -15,3 +19,4 @@ export const PRODUCT_CATEGORIES = [
     { label: 'Video Games', value: 'Video Games' },
     { label: 'Software', value: 'Software' },
 ];
+
