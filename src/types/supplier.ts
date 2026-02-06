@@ -9,6 +9,7 @@ export interface Supplier {
     phone: string;
     address?: string;
     imageUrl?: string;
+    categories?: string[]; // Array of product categories
     itemsSupplied?: string[]; // Array of inventory item IDs or names
     notes?: string;
     createdAt: Date;
@@ -20,6 +21,7 @@ export interface SupplierFormData {
     contactPerson?: string;
     email?: string;
     phone: string;
+    categories?: string[];
     itemsSupplied?: string[];
     address?: string;
     notes?: string;

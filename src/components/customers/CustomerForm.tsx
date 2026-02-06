@@ -153,8 +153,9 @@ export default function CustomerForm({
                 <Form.Item
                     name="businessName"
                     label="Business Name"
+                    rules={[{ required: true, message: 'Please enter business name' }]}
                 >
-                    <Input placeholder="Business name (optional)" size="large" style={{ borderRadius: '8px' }} allowClear />
+                    <Input placeholder="Business name" size="large" style={{ borderRadius: '8px' }} allowClear />
                 </Form.Item>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
@@ -169,7 +170,7 @@ export default function CustomerForm({
                     <Form.Item
                         name="email"
                         label="Email"
-                        rules={[{ type: 'email', message: 'Please enter a valid email' }]}
+                        rules={[{ required: true, message: 'Please enter email address' }, { type: 'email', message: 'Please enter a valid email' }]}
                     >
                         <Input placeholder="Email address" size="large" style={{ borderRadius: '8px' }} allowClear />
                     </Form.Item>
@@ -178,6 +179,7 @@ export default function CustomerForm({
                 <Form.Item
                     name="address"
                     label="Address"
+                    rules={[{ required: true, message: 'Please enter address' }]}
                 >
                     <TextArea
                         rows={2}

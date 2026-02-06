@@ -1,0 +1,5 @@
+node_modules
+#  remove the .next
+.next
+#  remove the .env.local    
+.env.local

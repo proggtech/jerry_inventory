@@ -22,7 +22,7 @@ interface InventoryFormData {
 interface InventoryFormProps {
     visible: boolean;
     onCancel: () => void;
-    onSubmit: (values: InventoryFormData, image?: File) => void;
+    onSubmit: (values: InventoryFormData, image?: File) => Promise<void>;
     initialValues?: Partial<InventoryItem>;
     loading: boolean;
 }
@@ -57,9 +57,9 @@ export default function InventoryForm({
     const handleSubmit = async () => {
         try {
             const values = await form.validateFields();
-            onSubmit(values, imageFile || undefined);
-            // Don't reset here immediately, wait for parent or let useEffect handle it if closed
-            if (!initialValues) resetForm();
+            await onSubmit(values, imageFile || undefined);
+            // Only reset after successful submission
+            resetForm();
         } catch (error) {
             console.error('Validation failed:', error);
         }
@@ -175,6 +175,7 @@ export default function InventoryForm({
                 <Form.Item
                     name="description"
                     label="Description"
+                    rules={[{ required: true, message: 'Please enter item description' }]}
                 >
                     <TextArea
                         rows={3}

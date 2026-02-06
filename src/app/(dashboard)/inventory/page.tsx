@@ -120,51 +120,54 @@ export default function InventoryPage() {
         }
     };
 
-    const handleFormSubmit = async (values: InventoryFormData, image?: File) => {
-        if (!user) return;
+    const handleFormSubmit = async (values: InventoryFormData, image?: File): Promise<void> => {
+        if (!user) throw new Error('User not authenticated');
 
         setFormLoading(true);
-        let imageUrl = editingItem?.imageUrl;
+        try {
+            let imageUrl = editingItem?.imageUrl;
 
-        // Upload image if provided
-        if (image) {
-            const itemId = editingItem?.id || Date.now().toString();
-            const { url, error } = await uploadItemImage(image, itemId);
-            if (error) {
-                message.error('Failed to upload image');
-                setFormLoading(false);
-                return;
+            // Upload image if provided
+            if (image) {
+                const itemId = editingItem?.id || Date.now().toString();
+                const { url, error } = await uploadItemImage(image, itemId);
+                if (error) {
+                    message.error('Failed to upload image');
+                    throw new Error('Image upload failed');
+                }
+                imageUrl = url || undefined;
             }
-            imageUrl = url || undefined;
-        }
 
-        const itemData = {
-            ...values,
-            userId: user.uid,
-            imageUrl,
-        };
+            const itemData = {
+                ...values,
+                userId: user.uid,
+                imageUrl,
+            };
 
-        if (editingItem) {
-            const { error } = await updateInventoryItem(editingItem.id, itemData);
-            if (error) {
-                message.error(error);
+            if (editingItem) {
+                const { error } = await updateInventoryItem(editingItem.id, itemData);
+                if (error) {
+                    message.error(error);
+                    throw new Error(error);
+                } else {
+                    message.success('Item updated successfully');
+                    setFormVisible(false);
+                    fetchItems();
+                }
             } else {
-                message.success('Item updated successfully');
-                setFormVisible(false);
-                fetchItems();
+                const { error } = await addInventoryItem(itemData);
+                if (error) {
+                    message.error(error);
+                    throw new Error(error);
+                } else {
+                    message.success('Item added successfully');
+                    setFormVisible(false);
+                    fetchItems();
+                }
             }
-        } else {
-            const { error } = await addInventoryItem(itemData);
-            if (error) {
-                message.error(error);
-            } else {
-                message.success('Item added successfully');
-                setFormVisible(false);
-                fetchItems();
-            }
+        } finally {
+            setFormLoading(false);
         }
-
-        setFormLoading(false);
     };
 
     const columns = [

@@ -5,6 +5,7 @@ import { Modal, Form, Input, Upload, message, Button, Select } from 'antd';
 import { CloudUploadOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Supplier } from '@/types/supplier';
 import { InventoryItem } from '@/types/inventory';
+import { PRODUCT_CATEGORIES } from '@/constants/categories';
 import type { UploadFile } from 'antd';
 
 const { TextArea } = Input;
@@ -18,6 +19,7 @@ interface SupplierFormData {
     phone: string;
     address?: string;
     notes?: string;
+    categories?: string[];
     itemsSupplied?: string[];
 }
 
@@ -129,6 +131,7 @@ export default function SupplierForm({
                     <Form.Item
                         name="contactPerson"
                         label="Contact Person"
+                        rules={[{ required: true, message: 'Please enter contact person name' }]}
                     >
                         <Input placeholder="Contact name" size="large" style={{ borderRadius: '8px' }} allowClear />
                     </Form.Item>
@@ -143,13 +146,28 @@ export default function SupplierForm({
                 </div>
 
                 <Form.Item
-                    name="itemsSupplied"
-                    label="Items Supplied"
+                    name="categories"
+                    label="Product Categories Supplied"
                     rules={[{ required: false }]}
                 >
                     <Select
                         mode="multiple"
-                        placeholder="Select items supplied"
+                        placeholder="Select categories"
+                        size="large"
+                        style={{ borderRadius: '8px' }}
+                        options={PRODUCT_CATEGORIES}
+                        allowClear
+                    />
+                </Form.Item>
+
+                <Form.Item
+                    name="itemsSupplied"
+                    label="Specific Items Supplied"
+                    rules={[{ required: false }]}
+                >
+                    <Select
+                        mode="multiple"
+                        placeholder="Select specific items"
                         size="large"
                         style={{ borderRadius: '8px' }}
                         optionFilterProp="children"
@@ -164,7 +182,7 @@ export default function SupplierForm({
                 <Form.Item
                     name="email"
                     label="Email"
-                    rules={[{ type: 'email', message: 'Please enter a valid email' }]}
+                    rules={[{ required: true, message: 'Please enter email address' }, { type: 'email', message: 'Please enter a valid email' }]}
                 >
                     <Input placeholder="Email address" size="large" style={{ borderRadius: '8px' }} allowClear />
                 </Form.Item>
@@ -172,6 +190,7 @@ export default function SupplierForm({
                 <Form.Item
                     name="address"
                     label="Address"
+                    rules={[{ required: true, message: 'Please enter address' }]}
                 >
                     <TextArea
                         rows={2}
@@ -184,6 +203,7 @@ export default function SupplierForm({
                 <Form.Item
                     name="notes"
                     label="Notes"
+                    rules={[{ required: true, message: 'Please enter notes' }]}
                 >
                     <TextArea
                         rows={3}
