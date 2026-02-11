@@ -52,6 +52,8 @@ export const recordSale = async (data: SaleFormData & { userId: string; customer
         const amountDue = totalAmount - data.amountPaid;
         const paymentStatus = amountDue === 0 ? 'paid' : (data.amountPaid > 0 ? 'partial' : 'pending');
 
+        let saleId = '';
+
         // Use transaction to ensure data consistency
         await runTransaction(db, async (transaction) => {
             // 1. READS: Fetch Customer
@@ -84,6 +86,8 @@ export const recordSale = async (data: SaleFormData & { userId: string; customer
 
             // 2. WRITES: Create sale transaction
             const saleRef = doc(collection(db, COLLECTION_NAME));
+            saleId = saleRef.id;
+
             transaction.set(saleRef, {
                 userId: data.userId,
                 customerId: data.customerId,
@@ -119,7 +123,7 @@ export const recordSale = async (data: SaleFormData & { userId: string; customer
             });
         });
 
-        return { error: null };
+        return { id: saleId, error: null };
     } catch (error: unknown) {
         if (error instanceof Error) {
             return { error: error.message };

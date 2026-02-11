@@ -103,19 +103,28 @@ export default function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
             >
                 <motion.div
                     initial={false}
-                    animate={{ scale: collapsed ? 0.8 : 1 }}
+                    animate={{
+                        scale: collapsed ? 0.8 : 1,
+                        opacity: 1
+                    }}
                     transition={{ duration: 0.3 }}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '100%',
+                        height: '100%'
+                    }}
                 >
-                    <Text
-                        strong
+                    <img
+                        src="/images/ideviceCare-logo.png"
+                        alt="iDeviceCare"
                         style={{
-                            color: '#fff',
-                            fontSize: collapsed ? '18px' : '20px',
-                            fontWeight: 700,
+                            maxHeight: '40px',
+                            maxWidth: collapsed ? '40px' : '160px',
+                            objectFit: 'contain'
                         }}
-                    >
-                        {collapsed ? 'ID' : 'iDeviceCare'}
-                    </Text>
+                    />
                 </motion.div>
             </div>
 

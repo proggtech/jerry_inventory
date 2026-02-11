@@ -13,7 +13,7 @@ body {
 body {
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-seserif;
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -109,4 +109,148 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Print Styles */
+@media print {
+  /* Modern Print Layout */
+  @page {
+    margin: 1cm;
+    size: auto;
+  }
+
+  body {
+    background: white !important;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000 !important;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  }
+
+  /* Hide UI Elements */
+  .no-print,
+  .ant-layout-sider,
+  header.ant-layout-header,
+  .ant-btn,
+  .ant-modal-mask, /* Don't hide wrap, dealt with in component */
+  .ant-pagination,
+  .ant-float-btn {
+    display: none !important;
+  }
+
+  /* Reset Layout */
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  .ant-layout, 
+  .ant-layout-content,
+  .ant-layout-has-sider {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    overflow: visible !important;
+  }
+
+  /* Specific fix for scrolling containers */
+  main, div {
+     overflow: visible !important;
+     height: auto !important;
+  }
+
+  /* Modern Card & Grid Reset */
+  .ant-card {
+    box-shadow: none !important;
+    border: none !important;
+    margin-bottom: 24px !important;
+    break-inside: avoid;
+  }
+  
+  .ant-card-body {
+    padding: 0 !important;
+  }
+
+  /* Statistics Cards - Make them inline or grid */
+  .ant-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+  }
+
+  .ant-col {
+    flex: 1 1 auto !important;
+  }
+
+  /* Table Modernization for Print */
+  .ant-table-wrapper {
+    margin-top: 20px !important;
+  }
+
+  .ant-table {
+    font-size: 10pt !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 4px;
+  }
+
+  .ant-table-thead > tr > th {
+    background-color: #f5f5f5 !important;
+    color: #333 !important;
+    border-bottom: 2px solid #333 !important;
+    font-weight: bold !important;
+    padding: 8px !important;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 8px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+  }
+
+  .ant-tag {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    color: #000 !important;
+    font-weight: 500;
+  }
+
+  /* Print Header (Visible only in print) */
+  .print-only {
+    display: block !important;
+  }
+
+  /* Hide the regular page Header title if redundant with print header */
+  .page-header-title {
+     display: none !important;
+  }
+
+  /* Specific Adjustments for Customer Details */
+  .customer-details-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* Ensure text colors are black */
+  .ant-typography, h1, h2, h3, h4, span, div {
+     color: #000 !important;
+  }
+
+  /* Highlight Due Amount */
+  .text-danger {
+      color: #ff0000 !important; /* Keep red for due amounts if desired, or bold black */
+      font-weight: bold;
+  }
+}
+
+
+/* Helper for screen */
+.print-only {
+  display: none;
 }
