@@ -103,6 +103,12 @@ export default function SaleForm({
     };
 
     const handleSubmit = async () => {
+        // Check if there are unsaved item selections
+        if (selectedItem !== null) {
+            message.warning('You have an unsaved item selection. Please click "Add" or clear the selection before recording the sale');
+            return;
+        }
+
         if (saleItems.length === 0) {
             message.warning('Please add at least one item');
             return;

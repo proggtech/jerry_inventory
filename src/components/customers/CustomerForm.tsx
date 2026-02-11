@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Modal, Form, Input, InputNumber, Button, Table, Select, Typography } from 'antd';
+import { Modal, Form, Input, InputNumber, Button, Table, Select, Typography, message } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Customer } from '@/types/customer';
 import { InventoryItem } from '@/types/inventory';
@@ -108,6 +108,18 @@ export default function CustomerForm({
     const itemsTotal = selectedItems.reduce((sum, item) => sum + item.total, 0);
 
     const handleSubmit = async () => {
+        // Check if there are unsaved item selections
+        if (currentItemId !== null) {
+            message.warning('You have an unsaved item selection. Please click "Add Item" or clear the selection before submitting');
+            return;
+        }
+
+        // Check if at least one item is added (only for new customers)
+        if (!initialValues && selectedItems.length === 0) {
+            message.warning('Please add at least one item to the purchase list');
+            return;
+        }
+
         try {
             const values = await form.validateFields();
             const success = await onSubmit(values, selectedItems, saleAmountPaid);

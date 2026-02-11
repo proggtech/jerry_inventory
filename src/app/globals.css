@@ -138,6 +138,29 @@ body {
     display: none !important;
   }
 
+  /* Hide table columns with no-print class */
+  .ant-table-thead > tr > th.no-print,
+  .ant-table-tbody > tr > td.no-print,
+  th.no-print,
+  td.no-print,
+  .no-print.ant-table-cell {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+
+  /* Hide Notes (9th) and Actions (10th) columns by position */
+  .ant-table-thead > tr > th:nth-child(9),
+  .ant-table-thead > tr > th:nth-child(10),
+  .ant-table-tbody > tr > td:nth-child(9),
+  .ant-table-tbody > tr > td:nth-child(10) {
+    display: none !important;
+  }
+
   /* Reset Layout */
   html, body {
     height: auto !important;

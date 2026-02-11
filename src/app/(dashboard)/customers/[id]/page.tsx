@@ -281,11 +281,13 @@ export default function CustomerDetailsPage() {
             render: (notes?: string) => notes || '-',
             ellipsis: true,
             className: 'no-print',
+            onHeaderCell: () => ({ className: 'no-print' }),
         },
         {
             title: 'Actions',
             key: 'actions',
             className: 'no-print',
+            onHeaderCell: () => ({ className: 'no-print' }),
             render: (_: unknown, record: Transaction) => (
                 <Space>
                     <Button
@@ -520,6 +522,29 @@ export default function CustomerDetailsPage() {
                 transaction={receiptTransaction}
                 customer={customer}
             />
+
+            <style jsx global>{`
+                @media print {
+                    /* Hide Notes and Actions columns */
+                    .ant-table-thead > tr > th:nth-child(9),
+                    .ant-table-thead > tr > th:nth-child(10),
+                    .ant-table-tbody > tr > td:nth-child(9),
+                    .ant-table-tbody > tr > td:nth-child(10),
+                    .ant-table-thead > tr > th:nth-last-child(1),
+                    .ant-table-thead > tr > th:nth-last-child(2),
+                    .ant-table-tbody > tr > td:nth-last-child(1),
+                    .ant-table-tbody > tr > td:nth-last-child(2) {
+                        display: none !important;
+                        visibility: hidden !important;
+                        width: 0 !important;
+                        max-width: 0 !important;
+                        overflow: hidden !important;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        border: none !important;
+                    }
+                }
+            `}</style>
 
         </motion.div>
     );
