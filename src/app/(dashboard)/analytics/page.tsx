@@ -146,9 +146,9 @@ export default function AnalyticsPage() {
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="category" />
                                     <YAxis />
-                                    <Tooltip formatter={(value) => `$${value}`} />
+                                    <Tooltip formatter={(value) => `GH₵${value}`} />
                                     <Legend />
-                                    <Bar dataKey="value" fill="#667eea" name="Total Value ($)" />
+                                    <Bar dataKey="value" fill="#667eea" name="Total Value (GH₵)" />
                                 </BarChart>
                             </ResponsiveContainer>
                         </Card>

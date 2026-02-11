@@ -234,7 +234,7 @@ export default function CustomerForm({
                                 value={currentPrice}
                                 onChange={(val) => setCurrentPrice(val || 0)}
                                 style={{ width: '100%' }}
-                                prefix="$"
+                                prefix="GH₵"
                             />
                         </div>
                         <Button
@@ -260,7 +260,7 @@ export default function CustomerForm({
                                         title: 'Total',
                                         dataIndex: 'total',
                                         width: 100,
-                                        render: (val: number) => `$${val.toFixed(2)}`
+                                        render: (val: number) => `GH₵${val.toFixed(2)}`
                                     },
                                     {
                                         title: '',
@@ -285,7 +285,7 @@ export default function CustomerForm({
                                         max={itemsTotal}
                                         defaultValue={0}
                                         style={{ width: '120px', marginLeft: '8px' }}
-                                        prefix="$"
+                                        prefix="GH₵"
                                         placeholder="Amount Paid"
                                         onChange={(val) => {
                                             setSaleAmountPaid(val || 0);
@@ -295,7 +295,7 @@ export default function CustomerForm({
                                     />
                                 </div>
                                 <div style={{ fontWeight: 600 }}>
-                                    Total Value: <span style={{ color: '#1890ff' }}>${itemsTotal.toFixed(2)}</span>
+                                    Total Value: <span style={{ color: '#1890ff' }}>GH₵{itemsTotal.toFixed(2)}</span>
                                 </div>
                             </div>
                         </>
@@ -317,7 +317,7 @@ export default function CustomerForm({
                         style={{ width: '100%', borderRadius: '8px' }}
                         min={0}
                         precision={2}
-                        prefix="$"
+                        prefix="GH₵"
                     />
                 </Form.Item>
             </Form>

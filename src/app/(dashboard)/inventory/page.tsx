@@ -226,13 +226,13 @@ export default function InventoryPage() {
             dataIndex: 'price',
             key: 'price',
             sorter: (a: InventoryItem, b: InventoryItem) => a.price - b.price,
-            render: (price: number) => `$${price.toFixed(2)}`,
+            render: (price: number) => `GH₵${price.toFixed(2)}`,
         },
         {
             title: 'Total Value',
             key: 'totalValue',
             render: (_: unknown, record: InventoryItem) =>
-                `$${(record.price * record.quantity).toFixed(2)}`,
+                `GH₵${(record.price * record.quantity).toFixed(2)}`,
             sorter: (a: InventoryItem, b: InventoryItem) =>
                 a.price * a.quantity - b.price * b.quantity,
         },
@@ -305,7 +305,7 @@ export default function InventoryPage() {
                             <Card.Meta
                                 title={<div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '140px' }} title={item.name}>{item.name}</span>
-                                    <span style={{ color: '#667eea' }}>${item.price}</span>
+                                    <span style={{ color: '#667eea' }}>GH₵{item.price}</span>
                                 </div>}
                                 description={
                                     <div>
@@ -314,7 +314,7 @@ export default function InventoryPage() {
                                         </div>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
                                             <span>Qty: <b>{item.quantity}</b></span>
-                                            <span style={{ color: '#888' }}>Total: ${(item.price * item.quantity).toFixed(2)}</span>
+                                            <span style={{ color: '#888' }}>Total: GH₵{(item.price * item.quantity).toFixed(2)}</span>
                                         </div>
                                     </div>
                                 }

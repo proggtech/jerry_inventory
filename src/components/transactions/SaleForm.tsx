@@ -159,13 +159,13 @@ export default function SaleForm({
             title: 'Price',
             dataIndex: 'price',
             key: 'price',
-            render: (price: number) => `$${price.toFixed(2)}`,
+            render: (price: number) => `GH₵${price.toFixed(2)}`,
         },
         {
             title: 'Total',
             dataIndex: 'total',
             key: 'total',
-            render: (total: number) => `$${total.toFixed(2)}`,
+            render: (total: number) => `GH₵${total.toFixed(2)}`,
         },
         {
             title: 'Action',
@@ -225,7 +225,7 @@ export default function SaleForm({
                         style={{ width: '25%' }}
                         min={0}
                         precision={2}
-                        prefix="$"
+                        prefix="GH₵"
                         value={price}
                         onChange={(val) => setPrice(val || 0)}
                     />
@@ -256,7 +256,7 @@ export default function SaleForm({
                     fontSize: '16px',
                     fontWeight: 600
                 }}>
-                    Total Amount: <span style={{ color: '#1890ff' }}>${totalAmount.toFixed(2)}</span>
+                    Total Amount: <span style={{ color: '#1890ff' }}>GH₵{totalAmount.toFixed(2)}</span>
                 </div>
             </div>
 
@@ -282,7 +282,7 @@ export default function SaleForm({
                         min={0}
                         max={totalAmount}
                         precision={2}
-                        prefix="$"
+                        prefix="GH₵"
                     />
                 </Form.Item>
 

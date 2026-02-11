@@ -74,7 +74,7 @@ export default function DashboardPage() {
             title: 'Price',
             dataIndex: 'price',
             key: 'price',
-            render: (price: number) => `$${price.toFixed(2)}`,
+            render: (price: number) => `GH₵${price.toFixed(2)}`,
         },
     ];
 
@@ -102,7 +102,7 @@ export default function DashboardPage() {
                     <StatsCard
                         title="Total Value"
                         value={stats.totalValue}
-                        prefix="$"
+                        prefix="GH₵"
                         icon={<DollarOutlined />}
                         color="#52c41a"
                         index={1}

@@ -60,7 +60,7 @@ export default function PaymentForm({
             <div style={{ marginBottom: '20px', padding: '16px', background: '#f5f5f5', borderRadius: '8px' }}>
                 <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px' }}>Customer: <strong>{customerName}</strong></div>
                 <div style={{ fontSize: '16px', color: currentBalance > 0 ? '#ff4d4f' : '#52c41a' }}>
-                    Current Balance: <strong>${currentBalance.toFixed(2)}</strong>
+                    Current Balance: <strong>GH₵{currentBalance.toFixed(2)}</strong>
                 </div>
             </div>
 
@@ -90,7 +90,7 @@ export default function PaymentForm({
                         min={0}
                         max={currentBalance}
                         precision={2}
-                        prefix="$"
+                        prefix="GH₵"
                     />
                 </Form.Item>
 

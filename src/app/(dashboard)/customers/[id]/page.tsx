@@ -189,13 +189,13 @@ export default function CustomerDetailsPage() {
             title: 'Amount',
             dataIndex: 'amount',
             key: 'amount',
-            render: (amount: number) => `$${amount.toFixed(2)}`,
+            render: (amount: number) => `GH₵${amount.toFixed(2)}`,
         },
         {
             title: 'Paid',
             dataIndex: 'amountPaid',
             key: 'amountPaid',
-            render: (paid: number) => `$${paid.toFixed(2)}`,
+            render: (paid: number) => `GH₵${paid.toFixed(2)}`,
         },
         {
             title: 'Due',
@@ -203,7 +203,7 @@ export default function CustomerDetailsPage() {
             key: 'amountDue',
             render: (due: number) => (
                 <Text style={{ color: due > 0 ? '#ff4d4f' : '#52c41a', fontWeight: 600 }}>
-                    ${due.toFixed(2)}
+                    GH₵{due.toFixed(2)}
                 </Text>
             ),
         },

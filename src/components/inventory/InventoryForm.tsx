@@ -145,7 +145,7 @@ export default function InventoryForm({
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <Form.Item
                         name="price"
-                        label="Price ($)"
+                        label="Price (GH₵)"
                         rules={[{ required: true, message: 'Please enter price' }]}
                     >
                         <InputNumber
@@ -154,7 +154,7 @@ export default function InventoryForm({
                             placeholder="0.00"
                             size="large"
                             style={{ width: '100%', borderRadius: '8px' }}
-                            prefix="$"
+                            prefix="GH₵"
                         />
                     </Form.Item>
 

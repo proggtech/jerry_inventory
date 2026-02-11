@@ -227,7 +227,7 @@ export default function CustomersPage() {
             dataIndex: 'totalPurchases',
             key: 'totalPurchases',
             sorter: (a: Customer, b: Customer) => a.totalPurchases - b.totalPurchases,
-            render: (amount: number) => `$${amount.toFixed(2)}`,
+            render: (amount: number) => `GH₵${amount.toFixed(2)}`,
         },
         {
             title: 'Balance',
@@ -238,7 +238,7 @@ export default function CustomersPage() {
                 const color = balance === 0 ? 'green' : balance > 0 ? 'red' : 'blue';
                 return (
                     <Tag color={color} style={{ fontWeight: 600 }}>
-                        ${balance.toFixed(2)}
+                        GH₵{balance.toFixed(2)}
                     </Tag>
                 );
             },
