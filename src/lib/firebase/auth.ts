@@ -4,6 +4,7 @@ import {
     signOut as firebaseSignOut,
     updateProfile,
     onAuthStateChanged,
+    sendPasswordResetEmail,
     User,
 } from 'firebase/auth';
 import { auth } from './config';
@@ -56,4 +57,16 @@ export const getCurrentUser = () => {
 
 export const onAuthStateChange = (callback: (user: User | null) => void) => {
     return onAuthStateChanged(auth, callback);
+};
+
+export const resetPassword = async (email: string) => {
+    try {
+        await sendPasswordResetEmail(auth, email);
+        return { error: null };
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            return { error: error.message };
+        }
+        return { error: 'An unknown error occurred' };
+    }
 };

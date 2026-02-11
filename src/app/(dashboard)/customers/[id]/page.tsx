@@ -328,7 +328,7 @@ export default function CustomerDetailsPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
-            <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <Button
                         icon={<ArrowLeftOutlined />}
@@ -434,23 +434,23 @@ export default function CustomerDetailsPage() {
                 </div>
                 <Row gutter={[16, 16]}>
                     {customer.businessName && (
-                        <Col span={12}>
+                        <Col xs={24} sm={12}>
                             <Text type="secondary">Business Name:</Text>
                             <div style={{ fontWeight: 500 }}>{customer.businessName}</div>
                         </Col>
                     )}
-                    <Col span={12}>
+                    <Col xs={24} sm={12}>
                         <Text type="secondary">Phone:</Text>
                         <div style={{ fontWeight: 500 }}>{customer.phone}</div>
                     </Col>
                     {customer.email && (
-                        <Col span={12}>
+                        <Col xs={24} sm={12}>
                             <Text type="secondary">Email:</Text>
                             <div style={{ fontWeight: 500 }}>{customer.email}</div>
                         </Col>
                     )}
                     {customer.address && (
-                        <Col span={24}>
+                        <Col xs={24}>
                             <Text type="secondary">Address:</Text>
                             <div style={{ fontWeight: 500 }}>{customer.address}</div>
                         </Col>
@@ -491,6 +491,7 @@ export default function CustomerDetailsPage() {
                         pageSize: 10,
                         showTotal: (total) => `Total ${total} transactions`,
                     }}
+                    scroll={{ x: 'max-content' }}
                 />
             </Card>
 

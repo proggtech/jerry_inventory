@@ -337,6 +337,7 @@ export default function CustomersPage() {
                         showTotal: (total) => `Total ${total} customers`,
                         style: { padding: '16px' },
                     }}
+                    scroll={{ x: 'max-content' }}
                 />
             </Card>
 

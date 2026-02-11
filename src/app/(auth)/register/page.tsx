@@ -34,6 +34,13 @@ export default function RegisterPage() {
             transition={{ duration: 0.5 }}
         >
             <div style={{ marginBottom: '32px', textAlign: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                    <img
+                        src="/images/ideviceCare-logo.png"
+                        alt="iDeviceCare"
+                        style={{ maxHeight: '60px', objectFit: 'contain' }}
+                    />
+                </div>
                 <Title level={2} style={{ marginBottom: '8px' }}>Create Account</Title>
                 <Text type="secondary">Start managing your inventory today</Text>
             </div>

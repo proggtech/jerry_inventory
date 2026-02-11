@@ -147,6 +147,7 @@ export default function DashboardPage() {
                         rowKey="id"
                         loading={loading}
                         pagination={false}
+                        scroll={{ x: 'max-content' }}
                     />
                 </Card>
             </motion.div>

@@ -47,18 +47,28 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                         borderRadius: '50%',
                     }} />
 
-                    <div style={{ zIndex: 1, textAlign: 'center', color: '#fff' }}>
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ delay: 0.3, duration: 0.5 }}
-                        >
-                            <Title style={{ color: '#fff', fontSize: '3rem', margin: 0 }}>iDeviceCare</Title>
-                            <Text style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1.2rem', marginTop: '20px', display: 'block' }}>
-                                Manage your stock with elegance and efficiency.
-                            </Text>
-                        </motion.div>
-                    </div>
+                    <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.3, duration: 0.5 }}
+                    >
+                        <img
+                            src="/images/ideviceCare-logo.png"
+                            alt="iDeviceCare"
+                            style={{
+                                maxWidth: '300px',
+                                marginBottom: '20px',
+                                filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))',
+                                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                                padding: '20px',
+                                borderRadius: '16px',
+                                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
+                            }}
+                        />
+                        <Text style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '1.2rem', marginTop: '10px', display: 'block' }}>
+                            Manage your stock with elegance and efficiency.
+                        </Text>
+                    </motion.div>
                 </motion.div>
 
                 {/* Right Side - Form */}

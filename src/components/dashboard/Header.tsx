@@ -13,15 +13,14 @@ const { Header: AntHeader } = Layout;
 interface HeaderProps {
     collapsed: boolean;
     setCollapsed: (collapsed: boolean) => void;
+    mobile?: boolean;
 }
 
-export default function Header({ collapsed, setCollapsed }: HeaderProps) {
-
-
+export default function Header({ collapsed, setCollapsed, mobile }: HeaderProps) {
     return (
         <AntHeader
             style={{
-                padding: '0 24px',
+                padding: mobile ? '0 16px' : '0 24px',
                 background: '#fff',
                 display: 'flex',
                 alignItems: 'center',
@@ -30,9 +29,10 @@ export default function Header({ collapsed, setCollapsed }: HeaderProps) {
                 position: 'sticky',
                 top: 0,
                 zIndex: 99,
+                width: '100%'
             }}
         >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
                 <Button
                     type="text"
                     icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -45,28 +45,16 @@ export default function Header({ collapsed, setCollapsed }: HeaderProps) {
                 />
 
                 <Input
-                    placeholder="Search inventory..."
+                    placeholder="Search..."
                     prefix={<SearchOutlined />}
                     style={{
-                        width: '300px',
+                        width: mobile ? '100%' : '300px',
+                        maxWidth: '400px',
                         borderRadius: '8px',
                     }}
                     size="large"
                 />
             </div>
-
-            {/* <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                <Badge count={3} offset={[-5, 5]}>
-                    <Button
-                        type="text"
-                        icon={<BellOutlined style={{ fontSize: '20px' }} />}
-                        style={{
-                            width: 40,
-                            height: 40,
-                        }}
-                    />
-                </Badge>
-            </div> */}
         </AntHeader>
     );
 }

@@ -373,6 +373,7 @@ export default function SuppliersPage() {
                             showTotal: (total) => `Total ${total} suppliers`,
                             style: { padding: '16px' },
                         }}
+                        scroll={{ x: 'max-content' }}
                     />
                 </Card>
             ) : (

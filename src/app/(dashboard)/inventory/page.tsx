@@ -416,6 +416,7 @@ export default function InventoryPage() {
                             showTotal: (total) => `Total ${total} items`,
                             style: { padding: '16px' }
                         }}
+                        scroll={{ x: 'max-content' }}
                     />
                 </Card>
             ) : (

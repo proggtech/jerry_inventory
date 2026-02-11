@@ -5,13 +5,16 @@ import { useRouter } from 'next/navigation';
 import { Form, Input, Button, message, Typography } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
-import { signIn } from '@/lib/firebase/auth';
+import { Modal } from 'antd';
+import { signIn, resetPassword } from '@/lib/firebase/auth';
 import Link from 'next/link';
 
 const { Title, Text } = Typography;
 
 export default function LoginPage() {
     const [loading, setLoading] = useState(false);
+    const [resetModalVisible, setResetModalVisible] = useState(false);
+    const [resetLoading, setResetLoading] = useState(false);
     const router = useRouter();
 
     const onFinish = async (values: { email: string; password: string }) => {
@@ -27,6 +30,19 @@ export default function LoginPage() {
         }
     };
 
+    const onResetPassword = async (values: { email: string }) => {
+        setResetLoading(true);
+        const { error } = await resetPassword(values.email);
+
+        if (error) {
+            message.error(error);
+        } else {
+            message.success('Password reset link sent! Check your email.');
+            setResetModalVisible(false);
+        }
+        setResetLoading(false);
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -34,6 +50,13 @@ export default function LoginPage() {
             transition={{ duration: 0.5 }}
         >
             <div style={{ marginBottom: '32px', textAlign: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                    <img
+                        src="/images/ideviceCare-logo.png"
+                        alt="iDeviceCare"
+                        style={{ maxHeight: '60px', objectFit: 'contain' }}
+                    />
+                </div>
                 <Title level={2} style={{ marginBottom: '8px' }}>Welcome Back</Title>
                 <Text type="secondary">Sign in to your inventory account</Text>
             </div>
@@ -69,6 +92,18 @@ export default function LoginPage() {
                     />
                 </Form.Item>
 
+                <div style={{ textAlign: 'right', marginBottom: '24px' }}>
+                    <a
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setResetModalVisible(true);
+                        }}
+                        style={{ color: '#667eea', cursor: 'pointer' }}
+                    >
+                        Forgot Password?
+                    </a>
+                </div>
+
                 <Form.Item>
                     <Button
                         type="primary"
@@ -96,6 +131,39 @@ export default function LoginPage() {
                     </Text>
                 </div>
             </Form>
+
+            <Modal
+                title="Reset Password"
+                open={resetModalVisible}
+                onCancel={() => setResetModalVisible(false)}
+                footer={null}
+            >
+                <div style={{ marginBottom: '20px' }}>
+                    <Text>Enter your email address and we&apos;ll send you a link to reset your password.</Text>
+                </div>
+                <Form
+                    onFinish={onResetPassword}
+                    layout="vertical"
+                >
+                    <Form.Item
+                        name="email"
+                        rules={[
+                            { required: true, message: 'Please enter your email' },
+                            { type: 'email', message: 'Please enter a valid email' },
+                        ]}
+                    >
+                        <Input
+                            prefix={<MailOutlined />}
+                            placeholder="Email"
+                        />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" loading={resetLoading} block>
+                            Send Reset Link
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Modal>
         </motion.div>
     );
 }
