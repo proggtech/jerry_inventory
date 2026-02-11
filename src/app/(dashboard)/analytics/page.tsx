@@ -17,58 +17,40 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 import { useAuth } from '@/contexts/AuthContext';
-import { getInventoryItems } from '@/lib/firebase/firestore';
+import {
+    getAnalyticsData,
+    CategoryData,
+    ValueData,
+    StockHealth
+} from '@/lib/firebase/analytics';
 
 const { Title } = Typography;
 
-const COLORS = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'];
-
-interface CategoryData {
-    name: string;
-    value: number;
-}
-
-interface ValueData {
-    category: string;
-    value: number;
-}
+const COLORS = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa8c16', '#eb2f96', '#13c2c2'];
 
 export default function AnalyticsPage() {
     const { user } = useAuth();
     const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
     const [valueData, setValueData] = useState<ValueData[]>([]);
+    const [stockHealth, setStockHealth] = useState<StockHealth[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchAnalytics = async () => {
             if (!user) return;
 
-            const { items } = await getInventoryItems(user.uid);
+            setLoading(true);
+            try {
+                const analyticsData = await getAnalyticsData(user.uid);
 
-            // Category distribution
-            const categoryMap = new Map<string, number>();
-            items.forEach((item) => {
-                const count = categoryMap.get(item.category) || 0;
-                categoryMap.set(item.category, count + 1);
-            });
-
-            const catData = Array.from(categoryMap.entries()).map(([name, value]) => ({
-                name,
-                value,
-            }));
-            setCategoryData(catData);
-
-            // Value by category
-            const valueMap = new Map<string, number>();
-            items.forEach((item) => {
-                const value = valueMap.get(item.category) || 0;
-                valueMap.set(item.category, value + item.price * item.quantity);
-            });
-
-            const valData = Array.from(valueMap.entries()).map(([category, value]) => ({
-                category,
-                value: parseFloat(value.toFixed(2)),
-            }));
-            setValueData(valData);
+                setCategoryData(analyticsData.categoryData);
+                setValueData(analyticsData.valueData);
+                setStockHealth(analyticsData.stockHealth);
+            } catch (error) {
+                console.error('Error fetching analytics:', error);
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchAnalytics();
@@ -96,7 +78,7 @@ export default function AnalyticsPage() {
                             bordered={false}
                             style={{
                                 borderRadius: '12px',
-                                boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
                             }}
                         >
                             <ResponsiveContainer width="100%" height={300}>
@@ -106,7 +88,7 @@ export default function AnalyticsPage() {
                                         cx="50%"
                                         cy="50%"
                                         labelLine={false}
-                                        label={({ name, percent }: { name?: string; percent?: number }) =>
+                                        label={({ name, percent }: any) =>
                                             `${name || 'Unknown'}: ${((percent || 0) * 100).toFixed(0)}%`
                                         }
                                         outerRadius={100}
@@ -138,7 +120,7 @@ export default function AnalyticsPage() {
                             bordered={false}
                             style={{
                                 borderRadius: '12px',
-                                boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
                             }}
                         >
                             <ResponsiveContainer width="100%" height={300}>
@@ -149,6 +131,34 @@ export default function AnalyticsPage() {
                                     <Tooltip formatter={(value) => `GH₵${value}`} />
                                     <Legend />
                                     <Bar dataKey="value" fill="#667eea" name="Total Value (GH₵)" />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </Card>
+                    </motion.div>
+                </Col>
+
+                <Col xs={24} lg={12}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                    >
+                        <Card
+                            title="Inventory Health"
+                            bordered={false}
+                            style={{
+                                borderRadius: '12px',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                            }}
+                        >
+                            <ResponsiveContainer width="100%" height={300}>
+                                <BarChart data={stockHealth}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="status" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Bar dataKey="count" fill="#722ed1" name="Item Count" />
                                 </BarChart>
                             </ResponsiveContainer>
                         </Card>

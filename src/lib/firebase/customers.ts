@@ -130,3 +130,23 @@ export const deleteCustomer = async (id: string) => {
         return { error: 'An unknown error occurred' };
     }
 };
+
+export const getCustomerStats = async (userId: string) => {
+    try {
+        const { customers, error } = await getCustomers(userId);
+        if (error) throw new Error(error);
+
+        const stats = {
+            totalCustomers: customers.length,
+            totalReceivables: customers.reduce((sum, customer) => sum + (customer.balance > 0 ? customer.balance : 0), 0),
+            totalPaid: customers.reduce((sum, customer) => sum + (customer.totalPurchases - customer.balance), 0),
+        };
+
+        return { stats, error: null };
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            return { stats: null, error: error.message };
+        }
+        return { stats: null, error: 'An unknown error occurred' };
+    }
+};

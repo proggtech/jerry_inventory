@@ -63,3 +63,9 @@ export interface PaymentFormData {
     paymentMethod?: string;
     notes?: string;
 }
+
+export interface CustomerStats {
+    totalCustomers: number;
+    totalReceivables: number;
+    totalPaid: number;
+}

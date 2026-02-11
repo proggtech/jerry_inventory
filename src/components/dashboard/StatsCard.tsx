@@ -28,18 +28,19 @@ export default function StatsCard({ title, value, prefix, suffix, icon, color, i
                 variant="borderless"
                 style={{
                     borderRadius: '12px',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
                     overflow: 'hidden',
                     position: 'relative',
                 }}
+                bodyStyle={{ padding: '16px' }}
             >
                 <div
                     style={{
                         position: 'absolute',
                         top: 0,
                         right: 0,
-                        width: '100px',
-                        height: '100px',
+                        width: '80px',
+                        height: '80px',
                         borderRadius: '50%',
                         background: `linear-gradient(135deg, ${color}15, ${color}05)`,
                         transform: 'translate(30%, -30%)',
@@ -52,13 +53,13 @@ export default function StatsCard({ title, value, prefix, suffix, icon, color, i
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            marginBottom: '16px',
+                            marginBottom: '8px',
                         }}
                     >
-                        <span style={{ color: '#8c8c8c', fontSize: '14px' }}>{title}</span>
+                        <span style={{ color: '#8c8c8c', fontSize: '12px', fontWeight: 500 }}>{title}</span>
                         <div
                             style={{
-                                fontSize: '32px',
+                                fontSize: '24px',
                                 color: color,
                             }}
                         >
@@ -73,7 +74,7 @@ export default function StatsCard({ title, value, prefix, suffix, icon, color, i
                         formatter={formatter}
                         styles={{
                             content: {
-                                fontSize: '28px',
+                                fontSize: '24px',
                                 fontWeight: 'bold',
                                 color: '#262626',
                             }
