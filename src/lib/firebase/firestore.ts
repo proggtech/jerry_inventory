@@ -15,7 +15,7 @@ import {
 import { db } from './config';
 import { InventoryItem, InventoryStats, InventoryFilters } from '@/types/inventory';
 
-const INVENTORY_COLLECTION = 'inventory';
+import { INVENTORY_COLLECTION } from './collections';
 
 export const addInventoryItem = async (data: Omit<InventoryItem, 'id' | 'createdAt' | 'updatedAt'>) => {
     try {

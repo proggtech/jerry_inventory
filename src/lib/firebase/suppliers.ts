@@ -13,7 +13,7 @@ import {
 import { db } from './config';
 import { Supplier, SupplierFormData } from '@/types/supplier';
 
-const COLLECTION_NAME = 'suppliers';
+import { SUPPLIERS_COLLECTION as COLLECTION_NAME } from './collections';
 
 export const getSuppliers = async (userId: string) => {
     try {

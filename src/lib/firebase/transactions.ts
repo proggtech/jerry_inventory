@@ -11,8 +11,11 @@ import {
 import { db } from './config';
 import { Transaction, SaleFormData, PaymentFormData } from '@/types/customer';
 
-const COLLECTION_NAME = 'transactions';
-const CUSTOMERS_COLLECTION = 'customers';
+import {
+    TRANSACTIONS_COLLECTION as COLLECTION_NAME,
+    CUSTOMERS_COLLECTION,
+    INVENTORY_COLLECTION
+} from './collections';
 
 export const getTransactions = async (userId: string, customerId?: string) => {
     try {
@@ -66,7 +69,7 @@ export const recordSale = async (data: SaleFormData & { userId: string; customer
 
             // 1. READS: Fetch Inventory Items and Validate Stock
             const itemRefs = data.items.map(item => ({
-                ref: doc(db, 'inventory', item.itemId),
+                ref: doc(db, INVENTORY_COLLECTION, item.itemId),
                 requestedQty: item.quantity,
                 name: item.itemName
             }));
@@ -230,7 +233,7 @@ export const deleteTransaction = async (transactionId: string) => {
                 // Add Items back to inventory
                 if (transData.items && transData.items.length > 0) {
                     const itemRefs = transData.items.map(item => ({
-                        ref: doc(db, 'inventory', item.itemId),
+                        ref: doc(db, INVENTORY_COLLECTION, item.itemId),
                         qtyToAdd: item.quantity,
                         name: item.itemName
                     }));

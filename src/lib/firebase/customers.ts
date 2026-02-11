@@ -14,7 +14,7 @@ import {
 import { db } from './config';
 import { Customer, CustomerFormData } from '@/types/customer';
 
-const COLLECTION_NAME = 'customers';
+import { CUSTOMERS_COLLECTION as COLLECTION_NAME } from './collections';
 
 export const getCustomers = async (userId: string) => {
     try {

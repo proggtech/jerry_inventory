@@ -131,7 +131,7 @@ export default function SupplierForm({
                     <Form.Item
                         name="contactPerson"
                         label="Contact Person"
-                        rules={[{ required: true, message: 'Please enter contact person name' }]}
+                        rules={[{ required: false }]}
                     >
                         <Input placeholder="Contact name" size="large" style={{ borderRadius: '8px' }} allowClear />
                     </Form.Item>
@@ -182,7 +182,7 @@ export default function SupplierForm({
                 <Form.Item
                     name="email"
                     label="Email"
-                    rules={[{ required: true, message: 'Please enter email address' }, { type: 'email', message: 'Please enter a valid email' }]}
+                    rules={[{ required: false }, { type: 'email', message: 'Please enter a valid email' }]}
                 >
                     <Input placeholder="Email address" size="large" style={{ borderRadius: '8px' }} allowClear />
                 </Form.Item>
@@ -203,7 +203,7 @@ export default function SupplierForm({
                 <Form.Item
                     name="notes"
                     label="Notes"
-                    rules={[{ required: true, message: 'Please enter notes' }]}
+                    rules={[{ required: false }]}
                 >
                     <TextArea
                         rows={3}

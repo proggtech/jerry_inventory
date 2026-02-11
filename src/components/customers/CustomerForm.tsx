@@ -153,7 +153,7 @@ export default function CustomerForm({
                 <Form.Item
                     name="businessName"
                     label="Business Name"
-                    rules={[{ required: true, message: 'Please enter business name' }]}
+                    rules={[{ required: false }]}
                 >
                     <Input placeholder="Business name" size="large" style={{ borderRadius: '8px' }} allowClear />
                 </Form.Item>
@@ -179,7 +179,7 @@ export default function CustomerForm({
                 <Form.Item
                     name="address"
                     label="Address"
-                    rules={[{ required: true, message: 'Please enter address' }]}
+                    rules={[{ required: false }]}
                 >
                     <TextArea
                         rows={2}
