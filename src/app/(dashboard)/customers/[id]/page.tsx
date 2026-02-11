@@ -15,6 +15,7 @@ import {
     Spin,
     Space,
     Popconfirm,
+    Tooltip,
 } from 'antd';
 import {
     ArrowLeftOutlined,
@@ -278,8 +279,16 @@ export default function CustomerDetailsPage() {
             title: 'Notes',
             dataIndex: 'notes',
             key: 'notes',
-            render: (notes?: string) => notes || '-',
-            ellipsis: true,
+            render: (notes?: string) => {
+                if (!notes) return '-';
+                return (
+                    <Tooltip title={notes}>
+                        <span style={{ cursor: 'help' }}>
+                            {notes.length > 15 ? `${notes.substring(0, 15)}...` : notes}
+                        </span>
+                    </Tooltip>
+                );
+            },
             className: 'no-print',
             onHeaderCell: () => ({ className: 'no-print' }),
         },

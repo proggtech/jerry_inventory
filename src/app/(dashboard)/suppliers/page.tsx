@@ -15,6 +15,7 @@ import {
     Radio,
     Empty,
     Avatar,
+    Tooltip,
 } from 'antd';
 import {
     PlusOutlined,
@@ -220,8 +221,16 @@ export default function SuppliersPage() {
             title: 'Address',
             dataIndex: 'address',
             key: 'address',
-            render: (address?: string) => address || '-',
-            ellipsis: true,
+            render: (address?: string) => {
+                if (!address) return '-';
+                return (
+                    <Tooltip title={address}>
+                        <span style={{ cursor: 'help' }}>
+                            {address.length > 15 ? `${address.substring(0, 15)}...` : address}
+                        </span>
+                    </Tooltip>
+                );
+            },
         },
         {
             title: 'Actions',

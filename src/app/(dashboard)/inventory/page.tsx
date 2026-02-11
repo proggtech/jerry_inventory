@@ -16,6 +16,7 @@ import {
     Typography,
     Radio,
     Empty,
+    Tooltip,
 } from 'antd';
 import {
     PlusOutlined,
@@ -194,9 +195,17 @@ export default function InventoryPage() {
             render: (text: string, record: InventoryItem) => (
                 <div>
                     <div style={{ fontWeight: 600 }}>{text}</div>
-                    <div style={{ fontSize: 12, color: '#888' }}>{record.description?.substring(0, 30)}{record.description && record.description.length > 30 ? '...' : ''}</div>
+                    {record.description && (
+                        <Tooltip title={record.description}>
+                            <div style={{ fontSize: 12, color: '#888', cursor: 'help' }}>
+                                {record.description.length > 15
+                                    ? `${record.description.substring(0, 15)}...`
+                                    : record.description}
+                            </div>
+                        </Tooltip>
+                    )}
                 </div>
-            )
+            ),
         },
         {
             title: 'Category',
